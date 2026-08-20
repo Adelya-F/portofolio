@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "achievements": "Prestasi",
+    "projects": "Proyek",
+    "skills": "Keahlian",
+    "experience": "Pengalaman",
+    "blog": "Blog",
+    "contact": "Kontak"
+  },
+  "theme": {
+    "toggleToLight": "Ganti ke mode terang",
+    "toggleToDark": "Ganti ke mode gelap"
+  },
+  "home": {
+    "eyebrow": "Halo, saya",
+    "ctaProjects": "Lihat Proyek",
+    "ctaContact": "Hubungi Saya",
+    "photoPlaceholder": "Tambahkan foto Anda di sini"
+  },
+  "about": {
+    "eyebrow": "Sedikit tentang saya",
+    "title": "Tentang Saya",
+    "statusLabel": "Status",
+    "fieldLabel": "Bidang",
+    "locationLabel": "Lokasi",
+    "emailLabel": "Email"
+  },
+  "achievements": {
+    "eyebrow": "Rekam jejak",
+    "title": "Prestasi",
+    "subtitle": "Juara tingkat nasional, provinsi, dan kota di kompetisi Cloud Computing.",
+    "rankPrefix": "Juara ",
+    "rankSuffix": "",
+    "national": "Nasional",
+    "provincial": "Provinsi",
+    "city": "Kota"
+  },
+  "projects": {
+    "eyebrow": "Karya pilihan",
+    "title": "Proyek",
+    "subtitle": "Beberapa hal yang pernah saya bangun, dari infrastruktur kompetisi sampai website klien beneran.",
+    "featuredBadge": "Unggulan",
+    "demo": "Demo langsung",
+    "repo": "Kode sumber"
+  },
+  "experience": {
+    "eyebrow": "Perjalanan saya",
+    "title": "Pengalaman",
+    "subtitle": "Kompetisi, kemenangan, dan proyek tim, terbaru di atas."
+  },
+  "skills": {
+    "eyebrow": "Kemampuan",
+    "title": "Keahlian",
+    "subtitle": "Yang benar-benar saya pakai sehari-hari."
+  },
+  "blog": {
+    "eyebrow": "Tulisan",
+    "title": "Blog",
+    "emptyTitle": "Tulisan blog segera hadir",
+    "emptyMessage": "Saya sedang menyiapkan tulisan seputar infrastruktur cloud dan pelajaran dari kompetisi. Mampir lagi nanti, ya."
+  },
+  "contact": {
+    "eyebrow": "Mari bicara",
+    "title": "Kontak",
+    "subtitle": "Ada pertanyaan atau ingin berkolaborasi? Kirim pesan ke saya.",
+    "nameLabel": "Nama",
+    "namePlaceholder": "Nama Anda",
+    "emailLabel": "Email",
+    "emailPlaceholder": "anda@contoh.com",
+    "messageLabel": "Pesan",
+    "messagePlaceholder": "Tulis pesan Anda...",
+    "submit": "Kirim Pesan",
+    "sending": "Mengirim...",
+    "successTitle": "Terima kasih sudah menghubungi!",
+    "successMessage": "Pesan Anda sudah masuk — saya akan segera membalas.",
+    "errorTitle": "Ada yang tidak beres",
+    "errorMessage": "Pesan Anda gagal terkirim. Boleh dicoba lagi sebentar lagi?"
+  },
+  "footer": {
+    "rights": "Seluruh hak cipta dilindungi.",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  }
+}

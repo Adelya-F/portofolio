@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Light mode — background stays untouched; surface/accent/text/border retuned
+     to read as one cohesive blue family instead of neutral gray-on-blue. */
+  --background: #f0f8ff;
+  --background-subtle: #e4f1fc;
+  --surface: #f8fbff;
+  --surface-hover: #eef5fe;
+  --foreground: #0e2038;
+  --muted: #56728f;
+  --border: #c7dff5;
+  --accent: #2f5fff;
+  --accent-hover: #1e46e0;
+  --accent-foreground: #ffffff;
+  --accent-soft: #dce7ff;
+  --glow-a: #bcdcff;
+  --glow-b: #cfe0ff;
+}
+
+.dark {
+  /* Dark mode — background stays untouched; accent dialed back from neon so it
+     reads clearly without glare, surface/border/text tuned to the same family. */
+  --background: #081420;
+  --background-subtle: #0b1b2c;
+  --surface: #11243b;
+  --surface-hover: #16293f;
+  --foreground: #eaf2fc;
+  --muted: #8fa8c4;
+  --border: #24354c;
+  --accent: #4fa3e8;
+  --accent-hover: #6fb6f2;
+  --accent-foreground: #06111f;
+  --accent-soft: #173049;
+  --glow-a: #123a4a;
+  --glow-b: #1c2a52;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-subtle: var(--background-subtle);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--foreground);
+}
+
+@keyframes float-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.1);
+  }
+}
+
+@keyframes float-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 25px) scale(1.05);
+  }
+}
+
+.animate-float-a {
+  animation: float-a 14s ease-in-out infinite;
+}
+
+.animate-float-b {
+  animation: float-b 17s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-float-a,
+  .animate-float-b {
+    animation: none;
+  }
+}

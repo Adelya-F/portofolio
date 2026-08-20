@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum AchievementLevel {
+  NATIONAL
+  PROVINCIAL
+  CITY
+}
+
+enum SkillLevel {
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+}
+
+model Achievement {
+  id          String           @id @default(cuid())
+  title       String
+  level       AchievementLevel
+  competition String
+  year        Int
+  order       Int              @default(0)
+
+  @@map("achievements")
+}
+
+model Project {
+  id            String   @id @default(cuid())
+  title         String
+  slug          String   @unique
+  descriptionEn String
+  descriptionId String
+  imageUrl      String?
+  tags          String[]
+  demoUrl       String?
+  repoUrl       String?
+  featured      Boolean  @default(false)
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model Skill {
+  id       String     @id @default(cuid())
+  name     String
+  category String
+  level    SkillLevel
+  order    Int        @default(0)
+
+  @@map("skills")
+}
+
+model Experience {
+  id            String   @id @default(cuid())
+  title         String
+  organization  String
+  descriptionEn String
+  descriptionId String
+  date          String
+  order         Int      @default(0)
+
+  @@map("experiences")
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  content     String
+  excerpt     String
+  coverImage  String?
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  tags        String[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("blog_posts")
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("messages")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  @@map("users")
+}

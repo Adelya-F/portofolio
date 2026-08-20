@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "achievements": "Achievements",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "theme": {
+    "toggleToLight": "Switch to light mode",
+    "toggleToDark": "Switch to dark mode"
+  },
+  "home": {
+    "eyebrow": "Hi, I'm",
+    "ctaProjects": "View Projects",
+    "ctaContact": "Get in Touch",
+    "photoPlaceholder": "Add your photo here"
+  },
+  "about": {
+    "eyebrow": "A bit about me",
+    "title": "About Me",
+    "statusLabel": "Status",
+    "fieldLabel": "Field",
+    "locationLabel": "Location",
+    "emailLabel": "Email"
+  },
+  "achievements": {
+    "eyebrow": "Track record",
+    "title": "Achievements",
+    "subtitle": "National, provincial, and city-level wins in Cloud Computing competitions.",
+    "rankPrefix": "",
+    "rankSuffix": "st Place",
+    "national": "National",
+    "provincial": "Provincial",
+    "city": "City"
+  },
+  "projects": {
+    "eyebrow": "Selected work",
+    "title": "Projects",
+    "subtitle": "A few things I've built, from competition infrastructure to a real client website.",
+    "featuredBadge": "Featured",
+    "demo": "Live demo",
+    "repo": "Source"
+  },
+  "experience": {
+    "eyebrow": "My journey",
+    "title": "Experience",
+    "subtitle": "Competitions, wins, and team projects, most recent first."
+  },
+  "skills": {
+    "eyebrow": "Capabilities",
+    "title": "Skills",
+    "subtitle": "What I actually work with, day to day."
+  },
+  "blog": {
+    "eyebrow": "Writing",
+    "title": "Blog",
+    "emptyTitle": "Blog posts coming soon",
+    "emptyMessage": "I'm working on write-ups about cloud infrastructure and what I've learned from competitions. Check back soon."
+  },
+  "contact": {
+    "eyebrow": "Let's talk",
+    "title": "Contact",
+    "subtitle": "Have a question or want to work together? Send me a message.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Write your message...",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Thanks for reaching out!",
+    "successMessage": "Got your message — I'll get back to you soon.",
+    "errorTitle": "Something went wrong",
+    "errorMessage": "Your message didn't go through. Mind trying again in a moment?"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  }
+}
