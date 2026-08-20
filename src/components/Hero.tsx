@@ -10,7 +10,13 @@ const container: Variants = {
   visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 };
 
-export function Hero({ profile }: { profile: Profile }) {
+export function Hero({
+  profile,
+  photoVersion,
+}: {
+  profile: Profile;
+  photoVersion: string | null;
+}) {
   const t = useTranslations("home");
   const reduceMotion = useReducedMotion();
 
@@ -84,7 +90,7 @@ export function Hero({ profile }: { profile: Profile }) {
         </motion.div>
 
         <motion.div initial="hidden" animate="visible" variants={photoItem}>
-          <ProfilePhoto alt={profile.name} />
+          <ProfilePhoto alt={profile.name} version={photoVersion} />
         </motion.div>
       </div>
     </section>

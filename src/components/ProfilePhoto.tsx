@@ -21,9 +21,16 @@ function PortraitIcon({ className }: { className?: string }) {
   );
 }
 
-export function ProfilePhoto({ alt }: { alt: string }) {
+export function ProfilePhoto({
+  alt,
+  version,
+}: {
+  alt: string;
+  version: string | null;
+}) {
   const t = useTranslations("home");
   const [errored, setErrored] = useState(false);
+  const src = version ? `/images/profile.jpg?v=${version}` : "/images/profile.jpg";
 
   return (
     <div className="relative mx-auto w-56 sm:w-72">
@@ -34,7 +41,7 @@ export function ProfilePhoto({ alt }: { alt: string }) {
       <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-border bg-surface shadow-xl shadow-accent/10">
         {!errored ? (
           <Image
-            src="/images/profile.jpg"
+            src={src}
             alt={alt}
             fill
             sizes="(min-width: 640px) 288px, 224px"

@@ -1,5 +1,6 @@
 import { getLocale } from "next-intl/server";
 import { getProfile } from "@/lib/content";
+import { getPublicAssetVersion } from "@/lib/asset-version";
 import type { AppLocale } from "@/i18n/routing";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/sections/About";
@@ -17,10 +18,11 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const locale = (await getLocale()) as AppLocale;
   const profile = await getProfile(locale);
+  const photoVersion = getPublicAssetVersion("images/profile.jpg");
 
   return (
     <>
-      <Hero profile={profile} />
+      <Hero profile={profile} photoVersion={photoVersion} />
       <About profile={profile} />
       <Achievements />
       <Projects />

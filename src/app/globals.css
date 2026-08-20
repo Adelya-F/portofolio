@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -18,6 +19,10 @@
   --accent-soft: #dce7ff;
   --glow-a: #bcdcff;
   --glow-b: #cfe0ff;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --danger-foreground: #ffffff;
+  --danger-soft: #fde3e3;
 }
 
 .dark {
@@ -36,6 +41,10 @@
   --accent-soft: #173049;
   --glow-a: #123a4a;
   --glow-b: #1c2a52;
+  --danger: #f87171;
+  --danger-hover: #fca5a5;
+  --danger-foreground: #1f0a0a;
+  --danger-soft: #3a1414;
 }
 
 @theme inline {
@@ -50,6 +59,10 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-danger-soft: var(--danger-soft);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
 }

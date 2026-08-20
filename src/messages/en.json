@@ -43,7 +43,8 @@
     "subtitle": "A few things I've built, from competition infrastructure to a real client website.",
     "featuredBadge": "Featured",
     "demo": "Live demo",
-    "repo": "Source"
+    "repo": "Source",
+    "imagePlaceholder": "No preview available"
   },
   "experience": {
     "eyebrow": "My journey",
@@ -59,7 +60,9 @@
     "eyebrow": "Writing",
     "title": "Blog",
     "emptyTitle": "Blog posts coming soon",
-    "emptyMessage": "I'm working on write-ups about cloud infrastructure and what I've learned from competitions. Check back soon."
+    "emptyMessage": "I'm working on write-ups about cloud infrastructure and what I've learned from competitions. Check back soon.",
+    "externalBadge": "External",
+    "backToBlog": "Back to blog"
   },
   "contact": {
     "eyebrow": "Let's talk",

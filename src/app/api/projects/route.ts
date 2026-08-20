@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { Prisma } from "@/generated/prisma/client";
 import { projectSchema } from "@/lib/validation";
 import { jsonError, jsonValidationError } from "@/lib/api-response";
+import { requireAdmin } from "@/lib/auth-guard";
 
 export async function GET() {
   const projects = await prisma.project.findMany({ orderBy: { order: "asc" } });
@@ -11,6 +12,9 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const body = await request.json();
   const parsed = projectSchema.safeParse(body);
 

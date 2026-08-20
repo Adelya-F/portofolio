@@ -48,17 +48,31 @@ export const experienceSchema = z.object({
 });
 export const experienceUpdateSchema = experienceSchema.partial();
 
-export const blogPostSchema = z.object({
+const blogPostShape = z.object({
   title: z.string().trim().min(1, "Title is required"),
   slug,
-  content: z.string().trim().min(1, "Content is required"),
+  sourceType: z.enum(["ORIGINAL", "EXTERNAL"]).default("ORIGINAL"),
+  content: z.string().trim().optional().nullable(),
+  externalUrl: z.url().optional().nullable(),
   excerpt: z.string().trim().min(1, "Excerpt is required"),
   coverImage: z.url().optional().nullable(),
   published: z.boolean().optional().default(false),
   publishedAt: z.coerce.date().optional().nullable(),
   tags: z.array(z.string().trim().min(1)).default([]),
 });
-export const blogPostUpdateSchema = blogPostSchema.partial();
+
+export const blogPostSchema = blogPostShape.refine(
+  (data) =>
+    data.sourceType === "ORIGINAL"
+      ? !!data.content?.trim()
+      : !!data.externalUrl?.trim(),
+  {
+    message:
+      "Original posts need content; external posts need an external URL.",
+    path: ["content"],
+  }
+);
+export const blogPostUpdateSchema = blogPostShape.partial();
 
 export const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(200, "Name is too long"),

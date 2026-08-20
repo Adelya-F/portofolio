@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { Prisma } from "@/generated/prisma/client";
 import { skillUpdateSchema } from "@/lib/validation";
 import { jsonNotFound, jsonValidationError } from "@/lib/api-response";
+import { requireAdmin } from "@/lib/auth-guard";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -16,6 +17,9 @@ export async function GET(_request: NextRequest, { params }: Params) {
 }
 
 export async function PUT(request: NextRequest, { params }: Params) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   const body = await request.json();
   const parsed = skillUpdateSchema.safeParse(body);
@@ -34,6 +38,9 @@ export async function PUT(request: NextRequest, { params }: Params) {
 }
 
 export async function DELETE(_request: NextRequest, { params }: Params) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
 
   try {
