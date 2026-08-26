@@ -21,8 +21,16 @@
 .env.*.local
 # production
 /build
+
+# AI assistant tooling — local-only, not part of the app itself. Some of
+# these (the prisma-* skill docs under skills/) get re-created automatically
+# by Prisma CLI/MCP tooling; ignoring them keeps that regeneration from
+# showing up as an uncommitted diff.
 CLAUDE.md
 .claude
+.windsurf
+.agents
+skills-lock.json
 # misc
 .DS_Store
 *.pem
