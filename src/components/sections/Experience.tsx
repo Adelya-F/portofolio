@@ -11,7 +11,10 @@ export async function Experience() {
   ]);
 
   return (
-    <section id="experience" className="scroll-mt-24 bg-background px-6 py-20 sm:py-28">
+    <section
+      id="experience"
+      className="scroll-mt-24 bg-background-subtle px-6 py-20 sm:py-28"
+    >
       <div className="mx-auto max-w-3xl">
         <ScrollReveal>
           <span className="text-sm font-semibold tracking-wide text-accent uppercase">
@@ -20,7 +23,6 @@ export async function Experience() {
           <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">
             {t("title")}
           </h2>
-          <p className="mt-3 text-muted">{t("subtitle")}</p>
         </ScrollReveal>
 
         <StaggerGroup className="mt-10 space-y-10 border-l border-border pl-6">

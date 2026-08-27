@@ -7,7 +7,16 @@ export function AnimatedNumber({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
   const reduceMotion = useReducedMotion();
-  const count = useMotionValue(reduceMotion ? value : 0);
+  const count = useMotionValue(value);
+
+  // useReducedMotion() is always false during SSR and only reports the real
+  // preference after mount, so it must never decide what gets rendered —
+  // that mismatch is a hydration error. The count-up starts from 0 here,
+  // imperatively, once hydration is done.
+  useEffect(() => {
+    if (reduceMotion || !ref.current) return;
+    ref.current.textContent = "0";
+  }, [reduceMotion]);
 
   useEffect(() => {
     if (!inView) return;
@@ -29,5 +38,5 @@ export function AnimatedNumber({ value }: { value: number }) {
     return () => controls.stop();
   }, [inView, value, count, reduceMotion]);
 
-  return <span ref={ref}>{reduceMotion ? value : 0}</span>;
+  return <span ref={ref}>{value}</span>;
 }

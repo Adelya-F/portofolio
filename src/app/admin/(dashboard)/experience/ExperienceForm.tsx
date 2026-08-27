@@ -12,6 +12,7 @@ import {
   cancelLinkClass,
   errorBannerClass,
 } from "@/components/admin/form-styles";
+import { readApiError } from "@/lib/admin-form";
 
 export function ExperienceForm({ experience }: { experience?: Experience }) {
   const router = useRouter();
@@ -44,8 +45,7 @@ export function ExperienceForm({ experience }: { experience?: Experience }) {
       });
 
       if (!response.ok) {
-        const body = await response.json().catch(() => null);
-        setError(body?.error ?? "Something went wrong. Please try again.");
+        setError(await readApiError(response));
         return;
       }
 

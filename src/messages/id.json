@@ -2,7 +2,6 @@
   "nav": {
     "home": "Beranda",
     "about": "Tentang",
-    "achievements": "Prestasi",
     "projects": "Proyek",
     "skills": "Keahlian",
     "experience": "Pengalaman",
@@ -15,8 +14,6 @@
   },
   "home": {
     "eyebrow": "Halo, saya",
-    "ctaProjects": "Lihat Proyek",
-    "ctaContact": "Hubungi Saya",
     "photoPlaceholder": "Tambahkan foto Anda di sini"
   },
   "about": {
@@ -27,44 +24,39 @@
     "locationLabel": "Lokasi",
     "emailLabel": "Email"
   },
-  "achievements": {
-    "eyebrow": "Rekam jejak",
-    "title": "Prestasi",
-    "subtitle": "Juara tingkat nasional, provinsi, dan kota di kompetisi Cloud Computing.",
-    "rankPrefix": "Juara ",
-    "rankSuffix": "",
-    "national": "Nasional",
-    "provincial": "Provinsi",
-    "city": "Kota"
-  },
   "projects": {
-    "eyebrow": "Karya pilihan",
+    "eyebrow": "Proyek Unggulan",
     "title": "Proyek",
-    "subtitle": "Beberapa hal yang pernah saya bangun, dari infrastruktur kompetisi sampai website klien beneran.",
     "featuredBadge": "Unggulan",
     "demo": "Demo langsung",
-    "repo": "Kode sumber"
+    "repo": "Kode sumber",
+    "imagePlaceholder": "Belum ada pratinjau"
   },
   "experience": {
     "eyebrow": "Perjalanan saya",
-    "title": "Pengalaman",
-    "subtitle": "Kompetisi, kemenangan, dan proyek tim, terbaru di atas."
+    "title": "Pengalaman"
   },
   "skills": {
     "eyebrow": "Kemampuan",
-    "title": "Keahlian",
-    "subtitle": "Yang benar-benar saya pakai sehari-hari."
+    "title": "Keahlian"
   },
   "blog": {
     "eyebrow": "Tulisan",
     "title": "Blog",
     "emptyTitle": "Tulisan blog segera hadir",
-    "emptyMessage": "Saya sedang menyiapkan tulisan seputar infrastruktur cloud dan pelajaran dari kompetisi. Mampir lagi nanti, ya."
+    "emptyMessage": "Saya sedang menyiapkan tulisan seputar infrastruktur cloud dan pelajaran dari kompetisi. Mampir lagi nanti, ya.",
+    "externalBadge": "Eksternal",
+    "originalBadge": "Artikel",
+    "backToBlog": "Kembali ke blog",
+    "readMore": "Baca artikel",
+    "coverPlaceholder": "Belum ada gambar sampul",
+    "externalHint": "Dibuka di situs penerbit aslinya",
+    "notFound": "Artikel ini tidak ada (atau belum dipublikasikan)."
   },
   "contact": {
     "eyebrow": "Mari bicara",
     "title": "Kontak",
-    "subtitle": "Ada pertanyaan atau ingin berkolaborasi? Kirim pesan ke saya.",
+    "subtitle": "Kirim idemu!",
     "nameLabel": "Nama",
     "namePlaceholder": "Nama Anda",
     "emailLabel": "Email",
@@ -79,9 +71,12 @@
     "errorMessage": "Pesan Anda gagal terkirim. Boleh dicoba lagi sebentar lagi?"
   },
   "footer": {
-    "rights": "Seluruh hak cipta dilindungi.",
     "email": "Email",
     "github": "GitHub",
     "linkedin": "LinkedIn"
+  },
+  "carousel": {
+    "previous": "Sebelumnya",
+    "next": "Berikutnya"
   }
 }

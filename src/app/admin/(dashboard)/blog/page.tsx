@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { DeleteButton } from "@/components/admin/DeleteButton";
+import { BlogThumbnail } from "@/components/BlogThumbnail";
 
 // Admin pages always read live data — never cache a stale snapshot.
 export const dynamic = "force-dynamic";
@@ -27,8 +28,9 @@ export default async function AdminBlogPage() {
         <table className="w-full min-w-[640px] text-left text-sm">
           <thead className="border-b border-border text-muted">
             <tr>
+              <th className="px-4 py-3 font-medium">Cover</th>
               <th className="px-4 py-3 font-medium">Title</th>
-              <th className="px-4 py-3 font-medium">Slug</th>
+              <th className="px-4 py-3 font-medium">Source</th>
               <th className="px-4 py-3 font-medium">Status</th>
               <th className="px-4 py-3" />
             </tr>
@@ -36,8 +38,24 @@ export default async function AdminBlogPage() {
           <tbody className="divide-y divide-border">
             {posts.map((post) => (
               <tr key={post.id}>
-                <td className="px-4 py-3 font-medium">{post.title}</td>
-                <td className="px-4 py-3 text-muted">{post.slug}</td>
+                <td className="px-4 py-3">
+                  <BlogThumbnail
+                    coverImage={post.coverImage}
+                    alt={post.title}
+                    placeholder="No cover image"
+                    className="h-12 w-16 shrink-0"
+                    iconClassName="h-4 w-4"
+                  />
+                </td>
+                <td className="px-4 py-3">
+                  <div className="font-medium">{post.title}</div>
+                  <div className="text-xs text-muted">{post.slug}</div>
+                </td>
+                <td className="px-4 py-3">
+                  <span className="rounded-full border border-border px-2.5 py-1 text-xs font-medium text-muted">
+                    {post.sourceType === "EXTERNAL" ? "External" : "Original"}
+                  </span>
+                </td>
                 <td className="px-4 py-3">
                   <span
                     className={`rounded-full px-2.5 py-1 text-xs font-medium ${
@@ -64,7 +82,7 @@ export default async function AdminBlogPage() {
             ))}
             {posts.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-8 text-center text-muted">
+                <td colSpan={5} className="px-4 py-8 text-center text-muted">
                   No blog posts yet.
                 </td>
               </tr>

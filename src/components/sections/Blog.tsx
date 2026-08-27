@@ -1,6 +1,8 @@
 import { getTranslations, getLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import type { AppLocale } from "@/i18n/routing";
+import { BlogThumbnail } from "@/components/BlogThumbnail";
 import { ScrollReveal, StaggerGroup, StaggerItem } from "@/components/motion/ScrollReveal";
 
 function PenIcon({ className }: { className?: string }) {
@@ -23,13 +25,39 @@ function PenIcon({ className }: { className?: string }) {
   );
 }
 
+function ExternalIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      className={className}
+      aria-hidden="true"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M14 4h6v6" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M20 4 11 13" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M18 14.5V19a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8a1.5 1.5 0 0 1 1.5-1.5H10"
+      />
+    </svg>
+  );
+}
+
 export async function Blog() {
   const [t, locale, posts] = await Promise.all([
     getTranslations("blog"),
     getLocale() as Promise<AppLocale>,
     prisma.blogPost.findMany({
       where: { published: true },
-      orderBy: { publishedAt: "desc" },
+      orderBy: [
+        // nulls: "last" keeps a dateless post from sorting above dated ones.
+        { publishedAt: { sort: "desc", nulls: "last" } },
+        { createdAt: "desc" },
+      ],
     }),
   ]);
 
@@ -40,7 +68,7 @@ export async function Blog() {
   });
 
   return (
-    <section id="blog" className="scroll-mt-24 bg-background-subtle px-6 py-20 sm:py-28">
+    <section id="blog" className="scroll-mt-24 bg-background px-6 py-20 sm:py-28">
       <div className="mx-auto max-w-3xl">
         <ScrollReveal>
           <span className="text-sm font-semibold tracking-wide text-accent uppercase">
@@ -62,28 +90,79 @@ export async function Blog() {
             </div>
           </ScrollReveal>
         ) : (
-          <StaggerGroup className="mt-10 divide-y divide-border">
-            {posts.map((post) => (
-              <StaggerItem key={post.id} className="py-6 first:pt-0">
-                {post.publishedAt && (
-                  <time className="text-sm text-muted">
-                    {dateFormatter.format(post.publishedAt)}
-                  </time>
-                )}
-                <h3 className="mt-1 font-display text-xl font-semibold">{post.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{post.excerpt}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent"
+          <StaggerGroup className="mt-10 space-y-4">
+            {posts.map((post) => {
+              const isExternal = post.sourceType === "EXTERNAL" && !!post.externalUrl;
+
+              const card = (
+                <>
+                  <BlogThumbnail
+                    coverImage={post.coverImage}
+                    alt={post.title}
+                    placeholder={t("coverPlaceholder")}
+                    className="aspect-[4/3] w-24 shrink-0 sm:w-36"
+                  />
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      {post.publishedAt && (
+                        <time className="text-xs text-muted sm:text-sm">
+                          {dateFormatter.format(post.publishedAt)}
+                        </time>
+                      )}
+                      {isExternal && (
+                        <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2 py-0.5 text-[11px] font-medium text-muted">
+                          <ExternalIcon className="h-3 w-3" />
+                          {t("externalBadge")}
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="mt-1 font-display text-lg font-semibold transition-colors group-hover:text-accent sm:text-xl">
+                      {post.title}
+                    </h3>
+                    <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-muted">
+                      {post.excerpt}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              );
+
+              const cardClass =
+                "group flex gap-4 rounded-2xl border border-border bg-surface p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10";
+
+              return (
+                <StaggerItem key={post.id}>
+                  {isExternal ? (
+                    // External coverage links straight out to the publisher —
+                    // there is no internal detail page for these.
+                    <a
+                      href={post.externalUrl!}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={t("externalHint")}
+                      className={cardClass}
                     >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </StaggerItem>
-            ))}
+                      {card}
+                    </a>
+                  ) : (
+                    <Link href={`/blog/${post.slug}`} className={cardClass}>
+                      {card}
+                    </Link>
+                  )}
+                </StaggerItem>
+              );
+            })}
           </StaggerGroup>
         )}
       </div>

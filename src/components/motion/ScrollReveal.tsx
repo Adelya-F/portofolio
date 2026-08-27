@@ -3,6 +3,12 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
+/**
+ * Reduced motion is applied through the *transition* (an instant cut instead of
+ * a slide), never through the variant values themselves. useReducedMotion()
+ * returns false during SSR and the real preference after mount, so letting it
+ * change the rendered style would produce a hydration mismatch.
+ */
 type ScrollRevealProps = {
   children: ReactNode;
   delay?: number;
@@ -19,11 +25,13 @@ export function ScrollReveal({
   const reduceMotion = useReducedMotion();
 
   const variants: Variants = {
-    hidden: { opacity: 0, y: reduceMotion ? 0 : y },
+    hidden: { opacity: 0, y },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      transition: reduceMotion
+        ? { duration: 0 }
+        : { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
@@ -73,11 +81,13 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: reduceMotion ? 0 : 16 },
+        hidden: { opacity: 0, y: 16 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+          transition: reduceMotion
+            ? { duration: 0 }
+            : { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
         },
       }}
     >

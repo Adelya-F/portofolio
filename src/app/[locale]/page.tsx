@@ -4,7 +4,6 @@ import { getPublicAssetVersion } from "@/lib/asset-version";
 import type { AppLocale } from "@/i18n/routing";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/sections/About";
-import { Achievements } from "@/components/sections/Achievements";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
 import { Experience } from "@/components/sections/Experience";
@@ -18,15 +17,16 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const locale = (await getLocale()) as AppLocale;
   const profile = await getProfile(locale);
-  const photoVersion = getPublicAssetVersion("images/profile.jpg");
+  const photoVersion = getPublicAssetVersion("images/profile.jpeg");
 
   return (
     <>
       <Hero profile={profile} photoVersion={photoVersion} />
       <About profile={profile} />
-      <Achievements />
       <Projects />
       <Skills />
+      {/* Achievements were folded into this section rather than kept
+          separate — see the "highlights" block inside Experience. */}
       <Experience />
       <Blog />
       <Contact />

@@ -12,6 +12,7 @@ import {
   cancelLinkClass,
   errorBannerClass,
 } from "@/components/admin/form-styles";
+import { readApiError } from "@/lib/admin-form";
 
 export function SkillForm({ skill }: { skill?: Skill }) {
   const router = useRouter();
@@ -27,7 +28,6 @@ export function SkillForm({ skill }: { skill?: Skill }) {
     const payload = {
       name: data.get("name"),
       category: data.get("category"),
-      level: data.get("level"),
       order: Number(data.get("order")),
     };
 
@@ -42,8 +42,7 @@ export function SkillForm({ skill }: { skill?: Skill }) {
       });
 
       if (!response.ok) {
-        const body = await response.json().catch(() => null);
-        setError(body?.error ?? "Something went wrong. Please try again.");
+        setError(await readApiError(response));
         return;
       }
 
@@ -83,22 +82,6 @@ export function SkillForm({ skill }: { skill?: Skill }) {
           placeholder="e.g. Cloud Computing & Infrastructure"
           className={inputClass}
         />
-      </div>
-
-      <div className={fieldClass}>
-        <label htmlFor="level" className={labelClass}>
-          Level
-        </label>
-        <select
-          id="level"
-          name="level"
-          defaultValue={skill?.level ?? "INTERMEDIATE"}
-          className={inputClass}
-        >
-          <option value="BASIC">Basic</option>
-          <option value="INTERMEDIATE">Intermediate</option>
-          <option value="ADVANCED">Advanced</option>
-        </select>
       </div>
 
       <div className={fieldClass}>

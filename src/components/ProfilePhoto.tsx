@@ -30,7 +30,7 @@ export function ProfilePhoto({
 }) {
   const t = useTranslations("home");
   const [errored, setErrored] = useState(false);
-  const src = version ? `/images/profile.jpg?v=${version}` : "/images/profile.jpg";
+  const src = version ? `/images/profile.jpeg?v=${version}` : "/images/profile.jpeg";
 
   return (
     <div className="relative mx-auto w-56 sm:w-72">

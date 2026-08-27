@@ -4,6 +4,8 @@ config({ path: ".env" });
 
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
+import { skills } from "./skills";
+import { demoProjects } from "./projects-demo";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
@@ -43,57 +45,33 @@ async function main() {
   await prisma.project.createMany({
     data: [
       {
-        title: "LKSN Cloud Computing Project",
-        slug: "lksn-cloud-computing-project",
+        title: "Kulkul",
+        slug: "kulkul-extracuriculer",
         descriptionEn:
-          "The build that took me to 1st place nationally. I provisioned everything as code with Terraform, then containerized and orchestrated the workloads with Docker and Kubernetes on AWS. Competition conditions meant things broke in front of a clock, so a good chunk of this project was really about staying calm and troubleshooting infrastructure fast, not just building it.",
+          "A platform for managing school extracurricular activities — member registration, attendance, and schedules in one place.",
         descriptionId:
-          "Project yang bawa saya ke Juara 1 Nasional. Semua saya provisioning sebagai code pakai Terraform, lalu containerization dan orchestration workload-nya dengan Docker dan Kubernetes di AWS. Namanya kondisi kompetisi, ya pasti ada aja yang error sambil waktu terus jalan — jadi sebagian besar project ini sebenarnya soal tetap tenang dan troubleshooting infrastruktur dengan cepat, bukan cuma soal membangunnya.",
-        tags: [
-          "Terraform",
-          "Docker",
-          "Kubernetes",
-          "AWS (EC2, S3, VPC)",
-          "Infrastructure as Code",
-          "Cloud Computing",
-        ],
-        featured: true,
+          "Platform manajemen kegiatan ekstrakurikuler sekolah — pendaftaran anggota, presensi, dan jadwal jadi satu tempat.",
+        imageUrl: "/images/projects/kulkul.jpeg",
+        tags: [],
+        featured: false,
         order: 1,
       },
       {
-        title: "Home Industry Tutoring ('Bimbel') Website",
-        slug: "home-industry-tutoring-website",
+        title: "Averus LMS",
+        slug: "averus-lms",
         descriptionEn:
-          "A website for a small, home-run tutoring business, built with a couple of teammates. I ended up owning both the backend and the frontend, which meant a lot of context-switching between Laravel logic and making the UI actually feel usable for non-technical users.",
+          "A learning management system built with Averus, a tutoring institution — course materials, schedules, and student progress in one place.",
         descriptionId:
-          "Website untuk usaha bimbel kecil skala home industry, dikerjakan bareng beberapa teman satu tim. Saya akhirnya pegang backend sekaligus frontend, jadi lumayan sering bolak-balik antara logika Laravel dan bikin tampilan yang benar-benar nyaman dipakai orang awam.",
+          "Learning management system yang dibangun bersama Averus, lembaga bimbingan belajar — materi, jadwal, dan progres siswa jadi satu tempat.",
         tags: ["Laravel", "PHP", "MySQL", "Bootstrap / CSS"],
         featured: false,
         order: 2,
       },
+      ...demoProjects,
     ],
   });
 
-  await prisma.skill.createMany({
-    data: [
-      { name: "AWS (EC2, S3, VPC & more)", category: "Cloud Computing & Infrastructure", level: "ADVANCED", order: 1 },
-      { name: "Terraform", category: "Cloud Computing & Infrastructure", level: "ADVANCED", order: 2 },
-      { name: "Docker", category: "Cloud Computing & Infrastructure", level: "ADVANCED", order: 3 },
-      { name: "Kubernetes", category: "Cloud Computing & Infrastructure", level: "ADVANCED", order: 4 },
-      { name: "Infrastructure as Code", category: "Cloud Computing & Infrastructure", level: "ADVANCED", order: 5 },
-      { name: "Infrastructure Troubleshooting", category: "Cloud Computing & Infrastructure", level: "ADVANCED", order: 6 },
-      { name: "Linux", category: "Cloud Computing & Infrastructure", level: "ADVANCED", order: 7 },
-      { name: "Networking Fundamentals", category: "Cloud Computing & Infrastructure", level: "INTERMEDIATE", order: 8 },
-      { name: "Laravel", category: "Backend", level: "INTERMEDIATE", order: 9 },
-      { name: "PHP", category: "Backend", level: "INTERMEDIATE", order: 10 },
-      { name: "MySQL", category: "Backend", level: "INTERMEDIATE", order: 11 },
-      { name: "HTML", category: "Web Development", level: "INTERMEDIATE", order: 12 },
-      { name: "CSS", category: "Web Development", level: "INTERMEDIATE", order: 13 },
-      { name: "JavaScript", category: "Web Development", level: "INTERMEDIATE", order: 14 },
-      { name: "Git & GitHub", category: "Tools", level: "INTERMEDIATE", order: 15 },
-      { name: "CI/CD (GitHub Actions)", category: "Tools", level: "BASIC", order: 16 },
-    ],
-  });
+  await prisma.skill.createMany({ data: skills });
 
   await prisma.experience.createMany({
     data: [

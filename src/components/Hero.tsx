@@ -4,6 +4,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
 import type { Profile } from "@/lib/content";
 import { ProfilePhoto } from "./ProfilePhoto";
+import { SocialLinks } from "./SocialLinks";
 
 const container: Variants = {
   hidden: {},
@@ -20,21 +21,28 @@ export function Hero({
   const t = useTranslations("home");
   const reduceMotion = useReducedMotion();
 
+  // Reduced motion shortens the transition rather than changing the variant
+  // values — the rendered markup has to be identical on server and client,
+  // and useReducedMotion() only knows the real preference after mount.
   const item: Variants = {
-    hidden: { opacity: 0, y: reduceMotion ? 0 : 18 },
+    hidden: { opacity: 0, y: 18 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+      transition: reduceMotion
+        ? { duration: 0 }
+        : { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
   const photoItem: Variants = {
-    hidden: { opacity: 0, scale: reduceMotion ? 1 : 0.92 },
+    hidden: { opacity: 0, scale: 0.92 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+      transition: reduceMotion
+        ? { duration: 0 }
+        : { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
@@ -67,25 +75,8 @@ export function Hero({
           <motion.p variants={item} className="max-w-xl text-lg text-muted">
             {profile.tagline}
           </motion.p>
-          <motion.div variants={item} className="flex flex-wrap gap-3 pt-2">
-            <motion.a
-              href="#projects"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground shadow-sm transition-colors hover:bg-accent-hover"
-            >
-              {t("ctaProjects")}
-            </motion.a>
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-surface-hover"
-            >
-              {t("ctaContact")}
-            </motion.a>
+          <motion.div variants={item} className="pt-2">
+            <SocialLinks variant="button" />
           </motion.div>
         </motion.div>
 

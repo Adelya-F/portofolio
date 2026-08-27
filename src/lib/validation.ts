@@ -1,5 +1,15 @@
 import { z } from "zod";
 
+// Images may be hosted anywhere (https://…) or shipped in public/ ("/images/…"),
+// so a plain z.url() would reject the local ones.
+const imageRef = z
+  .string()
+  .trim()
+  .refine(
+    (value) => /^https?:\/\//.test(value) || value.startsWith("/"),
+    "Use a full URL (https://…) or a path inside public/ that starts with /"
+  );
+
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const slug = z
   .string()
@@ -21,7 +31,7 @@ export const projectSchema = z.object({
   slug,
   descriptionEn: z.string().trim().min(1, "English description is required"),
   descriptionId: z.string().trim().min(1, "Indonesian description is required"),
-  imageUrl: z.url().optional().nullable(),
+  imageUrl: imageRef.optional().nullable(),
   tags: z.array(z.string().trim().min(1)).default([]),
   demoUrl: z.url().optional().nullable(),
   repoUrl: z.url().optional().nullable(),
@@ -33,7 +43,10 @@ export const projectUpdateSchema = projectSchema.partial();
 export const skillSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   category: z.string().trim().min(1, "Category is required"),
-  level: z.enum(["BASIC", "INTERMEDIATE", "ADVANCED"]),
+  // The public UI shows plain name chips, so level is no longer collected in
+  // the admin form. The column stays (non-null in the DB) and gets a default
+  // here, which avoids a migration if it is ever surfaced again.
+  level: z.enum(["BASIC", "INTERMEDIATE", "ADVANCED"]).optional().default("INTERMEDIATE"),
   order: z.number().int().optional().default(0),
 });
 export const skillUpdateSchema = skillSchema.partial();
@@ -55,7 +68,7 @@ const blogPostShape = z.object({
   content: z.string().trim().optional().nullable(),
   externalUrl: z.url().optional().nullable(),
   excerpt: z.string().trim().min(1, "Excerpt is required"),
-  coverImage: z.url().optional().nullable(),
+  coverImage: imageRef.optional().nullable(),
   published: z.boolean().optional().default(false),
   publishedAt: z.coerce.date().optional().nullable(),
   tags: z.array(z.string().trim().min(1)).default([]),

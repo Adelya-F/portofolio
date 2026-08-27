@@ -76,6 +76,15 @@ body {
   color: var(--foreground);
 }
 
+/* Carousel rails scroll natively but without the scrollbar chrome. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 ::selection {
   background: var(--accent-soft);
   color: var(--foreground);

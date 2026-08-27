@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { navItems, sectionIds } from "@/lib/sections";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { ThemeToggle } from "./ThemeToggle";
@@ -9,6 +10,7 @@ import { LocaleSwitcher } from "./LocaleSwitcher";
 
 export function Navbar() {
   const t = useTranslations("nav");
+  const reduceMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const active = useActiveSection(sectionIds);
@@ -40,13 +42,22 @@ export function Navbar() {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-                  isActive
-                    ? "bg-accent-soft text-accent"
-                    : "text-muted hover:bg-surface-hover hover:text-foreground"
+                className={`relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+                  isActive ? "text-accent" : "text-muted hover:text-foreground"
                 }`}
               >
-                {t(item.key)}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active-pill"
+                    className="absolute inset-0 rounded-full bg-accent-soft"
+                    transition={
+                      reduceMotion
+                        ? { duration: 0 }
+                        : { type: "spring", stiffness: 400, damping: 32 }
+                    }
+                  />
+                )}
+                <span className="relative">{t(item.key)}</span>
               </a>
             );
           })}
@@ -59,6 +70,7 @@ export function Navbar() {
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle navigation menu"
+            aria-expanded={open}
             className="flex h-9 w-9 items-center justify-center rounded-lg border border-border md:hidden"
           >
             <svg
@@ -79,29 +91,38 @@ export function Navbar() {
         </div>
       </nav>
 
-      {open && (
-        <div className="border-t border-border bg-background/95 px-6 py-3 backdrop-blur-md md:hidden">
-          <div className="flex flex-col gap-1">
-            {navItems.map((item) => {
-              const isActive = active === item.id;
-              return (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={() => setOpen(false)}
-                  className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                    isActive
-                      ? "bg-accent-soft text-accent"
-                      : "text-muted hover:bg-surface-hover hover:text-foreground"
-                  }`}
-                >
-                  {t(item.key)}
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-border bg-background/95 backdrop-blur-md md:hidden"
+          >
+            <div className="flex flex-col gap-1 px-6 py-3">
+              {navItems.map((item) => {
+                const isActive = active === item.id;
+                return (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={() => setOpen(false)}
+                    className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                      isActive
+                        ? "bg-accent-soft text-accent"
+                        : "text-muted hover:bg-surface-hover hover:text-foreground"
+                    }`}
+                  >
+                    {t(item.key)}
+                  </a>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

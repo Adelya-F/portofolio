@@ -11,6 +11,7 @@ import {
   cancelLinkClass,
   errorBannerClass,
 } from "@/components/admin/form-styles";
+import { readApiError } from "@/lib/admin-form";
 import Link from "next/link";
 
 type Props = {
@@ -49,8 +50,7 @@ export function AchievementForm({ achievement }: Props) {
       });
 
       if (!response.ok) {
-        const body = await response.json().catch(() => null);
-        setError(body?.error ?? "Something went wrong. Please try again.");
+        setError(await readApiError(response));
         return;
       }
 

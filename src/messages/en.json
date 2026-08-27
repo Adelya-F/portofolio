@@ -2,7 +2,6 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "achievements": "Achievements",
     "projects": "Projects",
     "skills": "Skills",
     "experience": "Experience",
@@ -15,8 +14,6 @@
   },
   "home": {
     "eyebrow": "Hi, I'm",
-    "ctaProjects": "View Projects",
-    "ctaContact": "Get in Touch",
     "photoPlaceholder": "Add your photo here"
   },
   "about": {
@@ -27,20 +24,9 @@
     "locationLabel": "Location",
     "emailLabel": "Email"
   },
-  "achievements": {
-    "eyebrow": "Track record",
-    "title": "Achievements",
-    "subtitle": "National, provincial, and city-level wins in Cloud Computing competitions.",
-    "rankPrefix": "",
-    "rankSuffix": "st Place",
-    "national": "National",
-    "provincial": "Provincial",
-    "city": "City"
-  },
   "projects": {
-    "eyebrow": "Selected work",
+    "eyebrow": "Featured Projects",
     "title": "Projects",
-    "subtitle": "A few things I've built, from competition infrastructure to a real client website.",
     "featuredBadge": "Featured",
     "demo": "Live demo",
     "repo": "Source",
@@ -48,13 +34,11 @@
   },
   "experience": {
     "eyebrow": "My journey",
-    "title": "Experience",
-    "subtitle": "Competitions, wins, and team projects, most recent first."
+    "title": "Experience"
   },
   "skills": {
     "eyebrow": "Capabilities",
-    "title": "Skills",
-    "subtitle": "What I actually work with, day to day."
+    "title": "Skills"
   },
   "blog": {
     "eyebrow": "Writing",
@@ -62,12 +46,17 @@
     "emptyTitle": "Blog posts coming soon",
     "emptyMessage": "I'm working on write-ups about cloud infrastructure and what I've learned from competitions. Check back soon.",
     "externalBadge": "External",
-    "backToBlog": "Back to blog"
+    "originalBadge": "Article",
+    "backToBlog": "Back to blog",
+    "readMore": "Read article",
+    "coverPlaceholder": "No cover image",
+    "externalHint": "Opens on the original publisher's site",
+    "notFound": "This article doesn't exist (or isn't published yet)."
   },
   "contact": {
     "eyebrow": "Let's talk",
     "title": "Contact",
-    "subtitle": "Have a question or want to work together? Send me a message.",
+    "subtitle": "Send me your idea!",
     "nameLabel": "Name",
     "namePlaceholder": "Your name",
     "emailLabel": "Email",
@@ -82,9 +71,12 @@
     "errorMessage": "Your message didn't go through. Mind trying again in a moment?"
   },
   "footer": {
-    "rights": "All rights reserved.",
     "email": "Email",
     "github": "GitHub",
     "linkedin": "LinkedIn"
+  },
+  "carousel": {
+    "previous": "Previous",
+    "next": "Next"
   }
 }

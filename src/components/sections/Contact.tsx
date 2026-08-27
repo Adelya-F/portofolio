@@ -6,7 +6,7 @@ export async function Contact() {
   const t = await getTranslations("contact");
 
   return (
-    <section id="contact" className="scroll-mt-24 bg-background px-6 py-20 sm:py-28">
+    <section id="contact" className="scroll-mt-24 bg-background-subtle px-6 py-20 sm:py-28">
       <div className="mx-auto max-w-xl">
         <ScrollReveal>
           <span className="text-sm font-semibold tracking-wide text-accent uppercase">

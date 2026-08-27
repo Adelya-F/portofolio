@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" font-family="Inter, Segoe UI, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="canvasBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="55%" stop-color="#15243f"/>
+      <stop offset="100%" stop-color="#0d1b33"/>
+    </linearGradient>
+    <filter id="phoneShadow" x="-25%" y="-15%" width="150%" height="135%">
+      <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#020617" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#canvasBg)"/>
+  <circle cx="180" cy="120" r="230" fill="#38bdf8" fill-opacity="0.07"/>
+  <circle cx="1430" cy="880" r="260" fill="#6366f1" fill-opacity="0.09"/>
+
+  <!-- Title block -->
+  <rect x="96" y="72" width="126" height="32" rx="16" fill="#38bdf8" fill-opacity="0.16"/>
+  <text x="114" y="94" fill="#7dd3fc" font-size="13" font-weight="700">FLUTTER APP</text>
+  <text x="96" y="150" fill="#f1f5f9" font-size="34" font-weight="700">StockScan</text>
+  <text x="96" y="182" fill="#94a3b8" font-size="16">Offline-first stock-taking for warehouse teams</text>
+
+  <!-- Phone 1: scan -->
+  <g filter="url(#phoneShadow)">
+    <rect x="220" y="238" width="340" height="700" rx="42" fill="#0b1220"/>
+  </g>
+  <rect x="220" y="238" width="340" height="700" rx="42" fill="#111c31"/>
+  <rect x="232" y="250" width="316" height="676" rx="34" fill="#f8fafc"/>
+  <rect x="316" y="262" width="148" height="20" rx="10" fill="#111c31"/>
+
+  <text x="260" y="326" fill="#0f172a" font-size="19" font-weight="700">Scan Item</text>
+  <text x="260" y="348" fill="#64748b" font-size="12">Session · Rack B — Aisle 3</text>
+  <rect x="466" y="308" width="52" height="24" rx="12" fill="#fef3c7"/>
+  <text x="475" y="325" fill="#b45309" font-size="10" font-weight="700">OFFLINE</text>
+
+  <rect x="260" y="368" width="258" height="242" rx="18" fill="#0f172a"/>
+  <path d="M280 400v-16h16M498 400v-16h-16M280 578v16h16M498 578v16h-16" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <g stroke="#e2e8f0" stroke-width="4">
+    <line x1="300" y1="452" x2="300" y2="526"/>
+    <line x1="312" y1="452" x2="312" y2="526"/>
+    <line x1="326" y1="452" x2="326" y2="526"/>
+    <line x1="344" y1="452" x2="344" y2="526"/>
+    <line x1="356" y1="452" x2="356" y2="526"/>
+    <line x1="374" y1="452" x2="374" y2="526"/>
+    <line x1="392" y1="452" x2="392" y2="526"/>
+    <line x1="404" y1="452" x2="404" y2="526"/>
+    <line x1="422" y1="452" x2="422" y2="526"/>
+    <line x1="440" y1="452" x2="440" y2="526"/>
+    <line x1="452" y1="452" x2="452" y2="526"/>
+    <line x1="470" y1="452" x2="470" y2="526"/>
+  </g>
+  <rect x="272" y="486" width="234" height="3" rx="2" fill="#38bdf8"/>
+  <text x="389" y="560" fill="#94a3b8" font-size="12" text-anchor="middle">8 991002 143201</text>
+
+  <rect x="260" y="632" width="258" height="88" rx="16" fill="#eff6ff"/>
+  <text x="280" y="662" fill="#0f172a" font-size="14" font-weight="700">Blue Nitrile Gloves M</text>
+  <text x="280" y="684" fill="#64748b" font-size="12">SKU-77812 · box of 100</text>
+  <text x="280" y="708" fill="#0284c7" font-size="12" font-weight="600">System qty: 42</text>
+
+  <text x="260" y="758" fill="#64748b" font-size="12">Counted quantity</text>
+  <rect x="260" y="770" width="258" height="56" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="284" y="806" fill="#0f172a" font-size="24" font-weight="700">39</text>
+  <rect x="446" y="782" width="32" height="32" rx="10" fill="#e2e8f0"/>
+  <text x="457" y="805" fill="#334155" font-size="18" font-weight="700">−</text>
+  <rect x="486" y="782" width="32" height="32" rx="10" fill="#0284c7"/>
+  <text x="496" y="805" fill="#ffffff" font-size="18" font-weight="700">+</text>
+
+  <rect x="260" y="842" width="258" height="30" rx="8" fill="#fee2e2"/>
+  <text x="276" y="862" fill="#b91c1c" font-size="12" font-weight="600">Variance −3 · note required</text>
+
+  <rect x="260" y="884" width="258" height="30" rx="15" fill="#0284c7"/>
+  <text x="330" y="904" fill="#ffffff" font-size="13" font-weight="700">Save &amp; scan next</text>
+
+  <!-- Phone 2: session list -->
+  <g filter="url(#phoneShadow)">
+    <rect x="630" y="238" width="340" height="700" rx="42" fill="#111c31"/>
+  </g>
+  <rect x="630" y="238" width="340" height="700" rx="42" fill="#111c31"/>
+  <rect x="642" y="250" width="316" height="676" rx="34" fill="#f8fafc"/>
+  <rect x="726" y="262" width="148" height="20" rx="10" fill="#111c31"/>
+
+  <text x="670" y="326" fill="#0f172a" font-size="19" font-weight="700">Current Session</text>
+  <text x="670" y="348" fill="#64748b" font-size="12">Started 09:12 · Andi Saputra</text>
+
+  <rect x="670" y="366" width="122" height="70" rx="14" fill="#ecfdf5"/>
+  <text x="686" y="394" fill="#047857" font-size="11" font-weight="600">SCANNED</text>
+  <text x="686" y="424" fill="#065f46" font-size="24" font-weight="700">184</text>
+  <rect x="806" y="366" width="122" height="70" rx="14" fill="#fef2f2"/>
+  <text x="822" y="394" fill="#b91c1c" font-size="11" font-weight="600">VARIANCE</text>
+  <text x="822" y="424" fill="#991b1b" font-size="24" font-weight="700">11</text>
+
+  <text x="670" y="472" fill="#0f172a" font-size="14" font-weight="700">Recent counts</text>
+
+  <rect x="670" y="486" width="258" height="62" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="688" y="512" fill="#0f172a" font-size="13" font-weight="600">Nitrile Gloves M</text>
+  <text x="688" y="532" fill="#94a3b8" font-size="11">SKU-77812 · 12:41</text>
+  <text x="910" y="518" fill="#b91c1c" font-size="14" font-weight="700" text-anchor="end">−3</text>
+
+  <rect x="670" y="558" width="258" height="62" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="688" y="584" fill="#0f172a" font-size="13" font-weight="600">Safety Goggles</text>
+  <text x="688" y="604" fill="#94a3b8" font-size="11">SKU-44120 · 12:38</text>
+  <text x="910" y="590" fill="#059669" font-size="14" font-weight="700" text-anchor="end">✓</text>
+
+  <rect x="670" y="630" width="258" height="62" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="688" y="656" fill="#0f172a" font-size="13" font-weight="600">Cable Ties 200mm</text>
+  <text x="688" y="676" fill="#94a3b8" font-size="11">SKU-19087 · 12:33</text>
+  <text x="910" y="662" fill="#b45309" font-size="14" font-weight="700" text-anchor="end">+8</text>
+
+  <rect x="670" y="702" width="258" height="62" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="688" y="728" fill="#0f172a" font-size="13" font-weight="600">Packing Tape 48mm</text>
+  <text x="688" y="748" fill="#94a3b8" font-size="11">SKU-30455 · 12:29</text>
+  <text x="910" y="734" fill="#059669" font-size="14" font-weight="700" text-anchor="end">✓</text>
+
+  <rect x="670" y="784" width="258" height="72" rx="14" fill="#fffbeb" stroke="#fde68a"/>
+  <text x="688" y="812" fill="#92400e" font-size="12" font-weight="700">23 counts queued offline</text>
+  <text x="688" y="834" fill="#b45309" font-size="11">Will upload when signal returns</text>
+
+  <rect x="670" y="874" width="258" height="40" rx="20" fill="#0f172a"/>
+  <text x="742" y="899" fill="#ffffff" font-size="13" font-weight="700">Finish session</text>
+
+  <!-- Phone 3: sync -->
+  <g filter="url(#phoneShadow)">
+    <rect x="1040" y="238" width="340" height="700" rx="42" fill="#111c31"/>
+  </g>
+  <rect x="1040" y="238" width="340" height="700" rx="42" fill="#111c31"/>
+  <rect x="1052" y="250" width="316" height="676" rx="34" fill="#f8fafc"/>
+  <rect x="1136" y="262" width="148" height="20" rx="10" fill="#111c31"/>
+
+  <text x="1080" y="326" fill="#0f172a" font-size="19" font-weight="700">Sync</text>
+  <rect x="1268" y="308" width="70" height="24" rx="12" fill="#dcfce7"/>
+  <text x="1281" y="325" fill="#15803d" font-size="10" font-weight="700">ONLINE</text>
+
+  <circle cx="1210" cy="446" r="66" fill="none" stroke="#e2e8f0" stroke-width="12"/>
+  <path d="M1210 380 a66 66 0 1 1 -46 113" fill="none" stroke="#0284c7" stroke-width="12" stroke-linecap="round"/>
+  <text x="1210" y="442" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle">78%</text>
+  <text x="1210" y="466" fill="#64748b" font-size="11" text-anchor="middle">18 of 23 sent</text>
+
+  <text x="1080" y="552" fill="#0f172a" font-size="14" font-weight="700">Upload queue</text>
+
+  <rect x="1080" y="566" width="258" height="52" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+  <circle cx="1104" cy="592" r="10" fill="#dcfce7"/>
+  <path d="M1099 592l4 4 7-8" stroke="#15803d" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <text x="1124" y="588" fill="#0f172a" font-size="12" font-weight="600">Rack B — Aisle 3</text>
+  <text x="1124" y="606" fill="#94a3b8" font-size="11">124 counts · uploaded</text>
+
+  <rect x="1080" y="628" width="258" height="52" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+  <circle cx="1104" cy="654" r="10" fill="#e0f2fe"/>
+  <circle cx="1104" cy="654" r="4" fill="#0284c7"/>
+  <text x="1124" y="650" fill="#0f172a" font-size="12" font-weight="600">Rack C — Aisle 1</text>
+  <text x="1124" y="668" fill="#0284c7" font-size="11">48 counts · uploading…</text>
+
+  <rect x="1080" y="690" width="258" height="52" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+  <circle cx="1104" cy="716" r="10" fill="#f1f5f9"/>
+  <text x="1124" y="712" fill="#0f172a" font-size="12" font-weight="600">Rack C — Aisle 2</text>
+  <text x="1124" y="730" fill="#94a3b8" font-size="11">12 counts · waiting</text>
+
+  <rect x="1080" y="762" width="258" height="86" rx="14" fill="#eff6ff"/>
+  <text x="1100" y="790" fill="#0f172a" font-size="12" font-weight="700">Variance report ready</text>
+  <text x="1100" y="812" fill="#475569" font-size="11">11 items differ from system</text>
+  <text x="1100" y="834" fill="#0284c7" font-size="11" font-weight="600">Export to CSV →</text>
+
+  <rect x="1080" y="868" width="258" height="40" rx="20" fill="#0284c7"/>
+  <text x="1150" y="893" fill="#ffffff" font-size="13" font-weight="700">Sync all now</text>
+
+  <!-- Captions -->
+  <text x="390" y="972" fill="#7f92ad" font-size="13" text-anchor="middle">Barcode scan &amp; count</text>
+  <text x="800" y="972" fill="#7f92ad" font-size="13" text-anchor="middle">Live session tracking</text>
+  <text x="1210" y="972" fill="#7f92ad" font-size="13" text-anchor="middle">Background sync</text>
+</svg>

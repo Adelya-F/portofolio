@@ -29,7 +29,6 @@ export default async function AdminSkillsPage() {
             <tr>
               <th className="px-4 py-3 font-medium">Name</th>
               <th className="px-4 py-3 font-medium">Category</th>
-              <th className="px-4 py-3 font-medium">Level</th>
               <th className="px-4 py-3 font-medium">Order</th>
               <th className="px-4 py-3" />
             </tr>
@@ -39,7 +38,6 @@ export default async function AdminSkillsPage() {
               <tr key={skill.id}>
                 <td className="px-4 py-3 font-medium">{skill.name}</td>
                 <td className="px-4 py-3 text-muted">{skill.category}</td>
-                <td className="px-4 py-3 text-muted">{skill.level}</td>
                 <td className="px-4 py-3 text-muted">{skill.order}</td>
                 <td className="px-4 py-3">
                   <div className="flex justify-end gap-2">
@@ -56,7 +54,7 @@ export default async function AdminSkillsPage() {
             ))}
             {skills.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-muted">
+                <td colSpan={4} className="px-4 py-8 text-center text-muted">
                   No skills yet.
                 </td>
               </tr>

@@ -12,6 +12,7 @@ import {
   cancelLinkClass,
   errorBannerClass,
 } from "@/components/admin/form-styles";
+import { readApiError } from "@/lib/admin-form";
 
 export function ProjectForm({ project }: { project?: Project }) {
   const router = useRouter();
@@ -53,8 +54,7 @@ export function ProjectForm({ project }: { project?: Project }) {
       });
 
       if (!response.ok) {
-        const body = await response.json().catch(() => null);
-        setError(body?.error ?? "Something went wrong. Please try again.");
+        setError(await readApiError(response));
         return;
       }
 
@@ -146,10 +146,14 @@ export function ProjectForm({ project }: { project?: Project }) {
         <input
           id="imageUrl"
           name="imageUrl"
-          type="url"
+          type="text"
           defaultValue={project?.imageUrl ?? ""}
+          placeholder="https://… or /images/projects/name.svg"
           className={inputClass}
         />
+        <p className="text-xs text-muted">
+          Screenshot shown in the browser frame on the card. Cropped to 16:10.
+        </p>
       </div>
 
       <div className={fieldClass}>
