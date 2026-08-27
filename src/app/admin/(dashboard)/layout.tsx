@@ -2,6 +2,14 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { logoutAction } from "./actions";
 
+// This layout queries the database on every request (unread message count),
+// and wraps every /admin/* page. Without this, Next.js statically prerenders
+// any child page that has no dynamic signal of its own (the "/new" form
+// pages) — which means a *build-time* database connection, and a build that
+// can fail if the DB happens to be unreachable right then. Admin pages are
+// all behind auth and never worth caching anyway.
+export const dynamic = "force-dynamic";
+
 const navItems = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/achievements", label: "Achievements" },
