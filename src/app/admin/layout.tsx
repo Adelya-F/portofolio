@@ -15,7 +15,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s — Admin",
+    template: "%s - Admin",
     default: "Admin",
   },
 };

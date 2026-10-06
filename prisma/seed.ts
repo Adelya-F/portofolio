@@ -52,18 +52,19 @@ async function main() {
         descriptionId:
           "Platform manajemen kegiatan ekstrakurikuler sekolah — pendaftaran anggota, presensi, dan jadwal jadi satu tempat.",
         imageUrl: "/images/projects/kulkul.jpeg",
-        tags: [],
+        tags: ["DevOps", "Docker", "CI/CD", "Linux", "Cloud Deployment"],
         featured: false,
         order: 1,
       },
       {
-        title: "Averus LMS",
-        slug: "averus-lms",
+        title: "Averus",
+        slug: "averus",
         descriptionEn:
           "A learning management system built with Averus, a tutoring institution — course materials, schedules, and student progress in one place.",
         descriptionId:
           "Learning management system yang dibangun bersama Averus, lembaga bimbingan belajar — materi, jadwal, dan progres siswa jadi satu tempat.",
-        tags: ["Laravel", "PHP", "MySQL", "Bootstrap / CSS"],
+        imageUrl: "/images/projects/averus1.png",
+        tags: ["DevOps", "Laravel", "PHP", "MySQL", "Bootstrap / CSS"],
         featured: false,
         order: 2,
       },

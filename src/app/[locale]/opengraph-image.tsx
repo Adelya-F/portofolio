@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { getProfile } from "@/lib/content";
 import type { AppLocale } from "@/i18n/routing";
 
-export const alt = "Adelya Fauzi Alfian — Portfolio";
+export const alt = "Adelya Fauzi Alfian - Portfolio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

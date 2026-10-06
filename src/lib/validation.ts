@@ -1,14 +1,17 @@
 import { z } from "zod";
+import { normalizeImageUrl } from "./image-url";
 
 // Images may be hosted anywhere (https://…) or shipped in public/ ("/images/…"),
-// so a plain z.url() would reject the local ones.
+// so a plain z.url() would reject the local ones. Share links from Google
+// Drive, Dropbox and GitHub are rewritten to their direct-image form.
 const imageRef = z
   .string()
   .trim()
   .refine(
     (value) => /^https?:\/\//.test(value) || value.startsWith("/"),
     "Use a full URL (https://…) or a path inside public/ that starts with /"
-  );
+  )
+  .transform(normalizeImageUrl);
 
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const slug = z

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { normalizeImageUrl } from "@/lib/image-url";
 
 function ImageIcon({ className }: { className?: string }) {
   return (
@@ -40,7 +41,9 @@ export function ProjectPreview({
   placeholder: string;
 }) {
   const [errored, setErrored] = useState(false);
-  const showImage = !!imageUrl && !errored;
+  // Links saved before share links were normalised on save still work.
+  const src = imageUrl ? normalizeImageUrl(imageUrl) : null;
+  const showImage = !!src && !errored;
 
   let host: string | null = null;
   if (siteUrl) {
@@ -69,7 +72,7 @@ export function ProjectPreview({
           // allow-listed in next.config.ts up front).
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={imageUrl}
+            src={src}
             alt={`${title} preview`}
             loading="lazy"
             onError={() => setErrored(true)}

@@ -115,3 +115,18 @@ model User {
 
   @@map("users")
 }
+
+// Images uploaded from the admin dashboard. Stored in Postgres rather than in
+// public/ because a Vercel deployment's filesystem is read-only — a file
+// written there at runtime would vanish on the next deploy. Served by
+// /api/media/[id].
+model Media {
+  id          String   @id @default(cuid())
+  filename    String
+  contentType String
+  size        Int
+  data        Bytes
+  createdAt   DateTime @default(now())
+
+  @@map("media")
+}

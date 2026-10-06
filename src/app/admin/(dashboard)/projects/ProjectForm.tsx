@@ -12,6 +12,7 @@ import {
   cancelLinkClass,
   errorBannerClass,
 } from "@/components/admin/form-styles";
+import { ImageField } from "@/components/admin/ImageField";
 import { readApiError } from "@/lib/admin-form";
 
 export function ProjectForm({ project }: { project?: Project }) {
@@ -139,22 +140,12 @@ export function ProjectForm({ project }: { project?: Project }) {
         />
       </div>
 
-      <div className={fieldClass}>
-        <label htmlFor="imageUrl" className={labelClass}>
-          Image URL (optional)
-        </label>
-        <input
-          id="imageUrl"
-          name="imageUrl"
-          type="text"
-          defaultValue={project?.imageUrl ?? ""}
-          placeholder="https://… or /images/projects/name.svg"
-          className={inputClass}
-        />
-        <p className="text-xs text-muted">
-          Screenshot shown in the browser frame on the card. Cropped to 16:10.
-        </p>
-      </div>
+      <ImageField
+        name="imageUrl"
+        label="Image (optional)"
+        defaultValue={project?.imageUrl}
+        hint="Paste a link to an image, or upload one from this device. Shown in the browser frame on the card, cropped to 16:10."
+      />
 
       <div className={fieldClass}>
         <label htmlFor="demoUrl" className={labelClass}>

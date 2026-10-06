@@ -31,12 +31,12 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale } = await props.params;
   const profile = await getProfile(locale as AppLocale);
-  const title = `${profile.name} — Portfolio`;
+  const title = `${profile.name} - Portfolio`;
 
   return {
     metadataBase: new URL(siteUrl),
     // Sub-pages (blog posts) set their own title and get the suffix appended.
-    title: { default: title, template: `%s — ${profile.name}` },
+    title: { default: title, template: `%s - ${profile.name}` },
     description: profile.tagline,
     applicationName: title,
     authors: [{ name: profile.name }],
@@ -45,6 +45,7 @@ export async function generateMetadata(
       profile.name,
       "Cloud Computing",
       "AWS",
+      "GCP",
       "Terraform",
       "Docker",
       "Kubernetes",

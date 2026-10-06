@@ -5,6 +5,7 @@ import { Prisma } from "@/generated/prisma/client";
 import { projectUpdateSchema } from "@/lib/validation";
 import { jsonError, jsonNotFound, jsonValidationError } from "@/lib/api-response";
 import { requireAdmin } from "@/lib/auth-guard";
+import { deleteMediaIfUnused } from "@/lib/media";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -27,7 +28,14 @@ export async function PUT(request: NextRequest, { params }: Params) {
   if (!parsed.success) return jsonValidationError(parsed.error);
 
   try {
+    const before = await prisma.project.findUnique({
+      where: { slug },
+      select: { imageUrl: true },
+    });
     const project = await prisma.project.update({ where: { slug }, data: parsed.data });
+    if (before && before.imageUrl !== project.imageUrl) {
+      await deleteMediaIfUnused(before.imageUrl);
+    }
     return NextResponse.json(project);
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
@@ -45,7 +53,8 @@ export async function DELETE(_request: NextRequest, { params }: Params) {
   const { slug } = await params;
 
   try {
-    await prisma.project.delete({ where: { slug } });
+    const project = await prisma.project.delete({ where: { slug } });
+    await deleteMediaIfUnused(project.imageUrl);
     return new NextResponse(null, { status: 204 });
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {

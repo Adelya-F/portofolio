@@ -19,26 +19,11 @@ export type SeedSkill = {
 
 const groups: { category: string; level: SeedSkill["level"]; names: string[] }[] = [
   {
-    // AWS data services (Glue, Redshift, EMR, Step Functions) live here rather
-    // than in a separate "Data & Analytics" heading — they are AWS services,
-    // and a category made up entirely of one vendor's products says nothing a
-    // reader can't already see from the names.
-    category: "Cloud Computing (AWS)",
+    // Platforms only, not a list of individual services: naming every AWS
+    // service made this one heading longer than the rest of the section.
+    category: "Cloud Computing",
     level: "ADVANCED",
-    names: [
-      "Amazon EC2",
-      "Amazon S3",
-      "Amazon VPC",
-      "AWS IAM",
-      "Amazon RDS",
-      "AWS Lambda",
-      "Amazon EKS",
-      "AWS CloudFormation",
-      "AWS Glue",
-      "Amazon Redshift",
-      "Amazon EMR (PySpark)",
-      "AWS Step Functions",
-    ],
+    names: ["AWS (Primary)", "GCP"],
   },
   {
     category: "DevOps & Infrastructure",
@@ -50,7 +35,6 @@ const groups: { category: string; level: SeedSkill["level"]; names: string[] }[]
       "GitHub Actions",
       "CI/CD",
       "Infrastructure as Code",
-      "Linux",
       "Networking Fundamentals",
       "Infrastructure Troubleshooting",
       "Git & GitHub",
@@ -82,7 +66,7 @@ const groups: { category: string; level: SeedSkill["level"]; names: string[] }[]
   {
     category: "Desktop Development",
     level: "INTERMEDIATE",
-    names: ["C#", ".NET", "Windows Forms / WPF", "Visual Studio"],
+    names: ["C#", ".NET", "Windows Forms / WPF"],
   },
   {
     // Redis belongs with the databases: it is an in-memory key-value store,
