@@ -29,7 +29,7 @@ export async function About({ profile }: { profile: Profile }) {
           {facts.map((fact) => (
             <StaggerItem
               key={fact.label}
-              className="rounded-2xl border border-border bg-surface p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10"
+              className="spotlight rounded-2xl border border-border bg-surface p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10"
             >
               <dt className="text-sm text-muted">{fact.label}</dt>
               <dd className="mt-1 font-medium">{fact.value}</dd>

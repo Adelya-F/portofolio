@@ -26,12 +26,12 @@ export default async function OpengraphImage({
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #081420 0%, #11243b 60%, #173049 100%)",
-          color: "#eaf2fc",
+          background: "linear-gradient(135deg, #05070d 0%, #111735 55%, #1e1b4b 100%)",
+          color: "#e8edf7",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ fontSize: 30, color: "#4fa3e8", letterSpacing: 2 }}>
+        <div style={{ fontSize: 30, color: "#818cf8", letterSpacing: 2 }}>
           {profile.field.toUpperCase()}
         </div>
         <div style={{ fontSize: 76, fontWeight: 700, marginTop: 16 }}>
@@ -40,7 +40,7 @@ export default async function OpengraphImage({
         <div
           style={{
             fontSize: 32,
-            color: "#8fa8c4",
+            color: "#8d98ae",
             marginTop: 24,
             lineHeight: 1.4,
           }}
@@ -54,14 +54,14 @@ export default async function OpengraphImage({
             alignItems: "center",
             gap: 16,
             fontSize: 26,
-            color: "#4fa3e8",
+            color: "#818cf8",
           }}
         >
           <div
             style={{
               width: 56,
               height: 6,
-              background: "#4fa3e8",
+              background: "#818cf8",
               borderRadius: 999,
             }}
           />

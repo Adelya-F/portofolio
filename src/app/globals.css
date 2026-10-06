@@ -4,21 +4,21 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Light mode — background stays untouched; surface/accent/text/border retuned
-     to read as one cohesive blue family instead of neutral gray-on-blue. */
-  --background: #f0f8ff;
-  --background-subtle: #e4f1fc;
-  --surface: #f8fbff;
-  --surface-hover: #eef5fe;
-  --foreground: #0e2038;
-  --muted: #56728f;
-  --border: #c7dff5;
-  --accent: #2f5fff;
-  --accent-hover: #1e46e0;
+  /* Light mode — a clean neutral canvas with an indigo accent, instead of
+     tinting every surface blue. */
+  --background: #f7f8fc;
+  --background-subtle: #eef1f8;
+  --surface: #ffffff;
+  --surface-hover: #f4f6fb;
+  --foreground: #0b1220;
+  --muted: #5a6478;
+  --border: #e1e6f0;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
   --accent-foreground: #ffffff;
-  --accent-soft: #dce7ff;
-  --glow-a: #bcdcff;
-  --glow-b: #cfe0ff;
+  --accent-soft: #eef0ff;
+  --glow-a: #c7d2fe;
+  --glow-b: #a5f3fc;
   --danger: #dc2626;
   --danger-hover: #b91c1c;
   --danger-foreground: #ffffff;
@@ -26,21 +26,20 @@
 }
 
 .dark {
-  /* Dark mode — background stays untouched; accent dialed back from neon so it
-     reads clearly without glare, surface/border/text tuned to the same family. */
-  --background: #081420;
-  --background-subtle: #0b1b2c;
-  --surface: #11243b;
-  --surface-hover: #16293f;
-  --foreground: #eaf2fc;
-  --muted: #8fa8c4;
-  --border: #24354c;
-  --accent: #4fa3e8;
-  --accent-hover: #6fb6f2;
-  --accent-foreground: #06111f;
-  --accent-soft: #173049;
-  --glow-a: #123a4a;
-  --glow-b: #1c2a52;
+  /* Dark mode — near-black navy; the accent is lightened to read clearly. */
+  --background: #05070d;
+  --background-subtle: #090d17;
+  --surface: #0e1422;
+  --surface-hover: #141c2e;
+  --foreground: #e8edf7;
+  --muted: #8d98ae;
+  --border: #1d2638;
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --accent-foreground: #0b0f1a;
+  --accent-soft: #1a1e3c;
+  --glow-a: #312e81;
+  --glow-b: #155e75;
   --danger: #f87171;
   --danger-hover: #fca5a5;
   --danger-foreground: #1f0a0a;
@@ -65,6 +64,7 @@
   --color-danger-soft: var(--danger-soft);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
+  --font-brand: var(--font-brand);
 }
 
 html {
@@ -88,6 +88,33 @@ body {
 ::selection {
   background: var(--accent-soft);
   color: var(--foreground);
+}
+
+/* Cursor-following glow. PointerSpotlight (mounted once in the layout) keeps
+   --mx/--my up to date on whichever .spotlight element is under the pointer. */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    transparent 45%
+  );
+}
+
+.spotlight:hover::before {
+  opacity: 1;
 }
 
 @keyframes float-a {

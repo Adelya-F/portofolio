@@ -139,7 +139,7 @@ export async function Blog() {
               );
 
               const cardClass =
-                "group flex gap-4 rounded-2xl border border-border bg-surface p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10";
+                "spotlight group flex gap-4 rounded-2xl border border-border bg-surface p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10";
 
               return (
                 <StaggerItem key={post.id}>

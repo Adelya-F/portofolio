@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Space_Grotesk, Inter, Cinzel } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { Analytics } from "@vercel/analytics/next";
 import "../globals.css";
@@ -8,6 +8,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
+import { PointerSpotlight } from "@/components/PointerSpotlight";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { getProfile } from "@/lib/content";
 import { siteUrl } from "@/lib/site-config";
@@ -20,6 +21,13 @@ const spaceGrotesk = Space_Grotesk({
 const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
+});
+
+// Only for the "A" monogram, matching the favicon letter.
+const cinzel = Cinzel({
+  variable: "--font-brand",
+  subsets: ["latin"],
+  weight: "700",
 });
 
 export function generateStaticParams() {
@@ -89,7 +97,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${cinzel.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
@@ -100,6 +108,7 @@ export default async function LocaleLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <BackToTop />
+            <PointerSpotlight />
             {/* Vercel Web Analytics: page views, referrers, devices, top pages.
                 No-ops outside Vercel, so local dev is unaffected. */}
             <Analytics />

@@ -7,6 +7,7 @@ import { navItems, sectionIds } from "@/lib/sections";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { ThemeToggle } from "./ThemeToggle";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { BrandMark } from "./BrandMark";
 
 export function Navbar() {
   const t = useTranslations("nav");
@@ -52,23 +53,26 @@ export function Navbar() {
       <header
         className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
           scrolled
-            ? "border-b border-border bg-background/80 backdrop-blur-md"
+            ? "border-b border-border/70 bg-background/75 shadow-sm shadow-black/[0.03] backdrop-blur-lg"
             : "border-b border-transparent bg-transparent"
         }`}
       >
         <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <a href="#hero" className="font-display text-lg font-semibold tracking-tight">
-            Adelya<span className="text-accent">.</span>
+          <a href="#hero" className="group flex items-center gap-2.5">
+            <BrandMark className="h-9 w-9 rounded-xl border border-border bg-surface text-lg text-foreground shadow-sm transition-all duration-300 group-hover:-rotate-6 group-hover:border-accent/50" />
+            <span className="font-display text-lg font-semibold tracking-tight">
+              Adelya<span className="text-accent">.</span>
+            </span>
           </a>
 
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-0.5 rounded-full border border-border bg-surface/70 p-1 shadow-sm backdrop-blur-md md:flex">
             {navItems.map((item) => {
               const isActive = active === item.id;
               return (
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  className={`relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+                  className={`relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
                     isActive ? "text-accent" : "text-muted hover:text-foreground"
                   }`}
                 >

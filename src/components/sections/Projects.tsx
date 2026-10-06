@@ -32,7 +32,7 @@ export async function Projects() {
             return (
               <StaggerItem
                 key={project.id}
-                className="group flex flex-col rounded-2xl border border-border bg-surface p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/10"
+                className="spotlight group flex flex-col rounded-2xl border border-border bg-surface p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/10"
               >
                 <ProjectPreview
                   imageUrl={project.imageUrl}
