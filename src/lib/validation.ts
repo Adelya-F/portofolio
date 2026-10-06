@@ -54,12 +54,24 @@ export const skillSchema = z.object({
 });
 export const skillUpdateSchema = skillSchema.partial();
 
+// Optional Indonesian text: an empty field is stored as null, so the public
+// page falls back to the English value instead of showing a blank.
+const optionalText = z
+  .string()
+  .trim()
+  .transform((value) => value || null)
+  .optional()
+  .nullable();
+
 export const experienceSchema = z.object({
   title: z.string().trim().min(1, "Title is required"),
+  titleId: optionalText,
   organization: z.string().trim().min(1, "Organization is required"),
+  organizationId: optionalText,
   descriptionEn: z.string().trim().min(1, "English description is required"),
   descriptionId: z.string().trim().min(1, "Indonesian description is required"),
   date: z.string().trim().min(1, "Date is required"),
+  dateId: optionalText,
   order: z.number().int().optional().default(0),
 });
 export const experienceUpdateSchema = experienceSchema.partial();

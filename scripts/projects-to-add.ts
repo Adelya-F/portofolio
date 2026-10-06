@@ -1,7 +1,8 @@
 /**
  * Projects to add (or update) with `npx tsx scripts/add-projects.ts`.
  *
- * Matching is by `slug`: a slug that already exists is updated, a new one is
+ * Matching is by `slug`: a slug that already exists is updated (only the
+ * fields you list change, e.g. `{ slug: "averus", order: 4 }`), a new one is
  * created. Projects not listed here are left alone, so anything added or
  * edited from the admin dashboard is safe.
  *
@@ -18,10 +19,11 @@
  * in the database, not here.
  */
 export type ProjectToAdd = {
-  title: string;
   slug: string;
-  descriptionEn: string;
-  descriptionId: string;
+  // Required for a new project; optional when updating an existing one.
+  title?: string;
+  descriptionEn?: string;
+  descriptionId?: string;
   tags?: string[];
   image?: string | null;
   demoUrl?: string | null;

@@ -14,6 +14,58 @@ import {
 } from "@/components/admin/form-styles";
 import { readApiError } from "@/lib/admin-form";
 
+/**
+ * One field in both languages. English is required; Indonesian is optional
+ * and falls back to the English text on the public page when left empty.
+ */
+function BilingualField({
+  name,
+  label,
+  en,
+  id,
+  placeholderEn,
+  placeholderId,
+}: {
+  name: string;
+  label: string;
+  en?: string;
+  id?: string | null;
+  placeholderEn?: string;
+  placeholderId?: string;
+}) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      <div className={fieldClass}>
+        <label htmlFor={name} className={labelClass}>
+          {label} (English)
+        </label>
+        <input
+          id={name}
+          name={name}
+          type="text"
+          required
+          defaultValue={en}
+          placeholder={placeholderEn}
+          className={inputClass}
+        />
+      </div>
+      <div className={fieldClass}>
+        <label htmlFor={`${name}Id`} className={labelClass}>
+          {label} (Indonesian)
+        </label>
+        <input
+          id={`${name}Id`}
+          name={`${name}Id`}
+          type="text"
+          defaultValue={id ?? ""}
+          placeholder={placeholderId ?? "Same as English if empty"}
+          className={inputClass}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function ExperienceForm({ experience }: { experience?: Experience }) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
@@ -27,8 +79,11 @@ export function ExperienceForm({ experience }: { experience?: Experience }) {
     const data = new FormData(e.currentTarget);
     const payload = {
       title: data.get("title"),
+      titleId: data.get("titleId"),
       organization: data.get("organization"),
+      organizationId: data.get("organizationId"),
       date: data.get("date"),
+      dateId: data.get("dateId"),
       descriptionEn: data.get("descriptionEn"),
       descriptionId: data.get("descriptionId"),
       order: Number(data.get("order")),
@@ -57,49 +112,31 @@ export function ExperienceForm({ experience }: { experience?: Experience }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 flex max-w-lg flex-col gap-5">
-      <div className={fieldClass}>
-        <label htmlFor="title" className={labelClass}>
-          Title
-        </label>
-        <input
-          id="title"
-          name="title"
-          type="text"
-          required
-          defaultValue={experience?.title}
-          className={inputClass}
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="mt-8 flex max-w-2xl flex-col gap-5">
+      <BilingualField
+        name="title"
+        label="Title"
+        en={experience?.title}
+        id={experience?.titleId}
+        placeholderEn="e.g. 1st Place, LKS Cloud Computing"
+        placeholderId="mis. Juara 1 LKS Cloud Computing"
+      />
 
-      <div className={fieldClass}>
-        <label htmlFor="organization" className={labelClass}>
-          Organization
-        </label>
-        <input
-          id="organization"
-          name="organization"
-          type="text"
-          required
-          defaultValue={experience?.organization}
-          className={inputClass}
-        />
-      </div>
+      <BilingualField
+        name="organization"
+        label="Organization"
+        en={experience?.organization}
+        id={experience?.organizationId}
+      />
 
-      <div className={fieldClass}>
-        <label htmlFor="date" className={labelClass}>
-          Date
-        </label>
-        <input
-          id="date"
-          name="date"
-          type="text"
-          required
-          defaultValue={experience?.date}
-          placeholder="e.g. Feb 2026 — Present"
-          className={inputClass}
-        />
-      </div>
+      <BilingualField
+        name="date"
+        label="Date"
+        en={experience?.date}
+        id={experience?.dateId}
+        placeholderEn="e.g. Feb 2026 – Present"
+        placeholderId="mis. Feb 2026 – Sekarang"
+      />
 
       <div className={fieldClass}>
         <label htmlFor="descriptionEn" className={labelClass}>

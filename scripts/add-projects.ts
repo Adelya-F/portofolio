@@ -7,7 +7,7 @@ import { basename } from "node:path";
 import sharp from "sharp";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
-import { projectSchema } from "../src/lib/validation";
+import { projectSchema, projectUpdateSchema } from "../src/lib/validation";
 import { projectsToAdd } from "./projects-to-add";
 
 /**
@@ -75,35 +75,45 @@ async function main() {
       throw new Error(`${input.slug}: image file not found: ${image}`);
     }
 
-    const parsed = projectSchema.safeParse({
-      ...input,
+    const fields: Record<string, unknown> = { ...input };
+    if (image !== undefined) {
       // Placeholder so validation passes; replaced by the real upload below.
-      imageUrl: isLocalFile ? "/api/media/pending" : image ?? null,
-      order: input.order ?? current?.order ?? nextOrder,
-    });
+      fields.imageUrl = isLocalFile ? "/api/media/pending" : image;
+    }
+
+    // An existing project is only patched: fields left out of the list keep
+    // their current values (a reorder does not need the descriptions again).
+    // A new project needs every required field.
+    if (!current) fields.order ??= nextOrder++;
+    const parsed = (current ? projectUpdateSchema : projectSchema).safeParse(fields);
     if (!parsed.success) {
       const issue = parsed.error.issues[0];
       throw new Error(`${input.slug}: ${issue.path.join(".")}: ${issue.message}`);
     }
-    if (!current && input.order === undefined) nextOrder++;
+    // The schemas fill defaults (empty tags, featured: false, ...) for missing
+    // keys — on a patch those would overwrite real data, so keep only the keys
+    // that were actually listed.
+    const data: Record<string, unknown> = Object.fromEntries(
+      Object.entries(parsed.data).filter(([key]) => key in fields)
+    );
 
-    const action = current ? "update" : "create";
+    const changes = Object.keys(data).filter((key) => key !== "slug").join(", ");
     console.log(
-      `${apply ? "" : "[preview] "}${action} ${parsed.data.slug} ` +
-        `(order ${parsed.data.order}, image: ${isLocalFile ? `upload ${image}` : parsed.data.imageUrl ?? "none"})`
+      `${apply ? "" : "[preview] "}${current ? "update" : "create"} ${input.slug}` +
+        (current ? ` (${changes})` : ` (order ${data.order})`) +
+        (isLocalFile ? `, upload ${image}` : "")
     );
     if (!apply) continue;
 
-    const data = {
-      ...parsed.data,
-      imageUrl: isLocalFile ? await uploadLocalImage(image) : parsed.data.imageUrl,
-    };
+    if (isLocalFile) data.imageUrl = await uploadLocalImage(image);
 
     if (current) {
-      await prisma.project.update({ where: { slug: data.slug }, data });
-      if (current.imageUrl !== data.imageUrl) await deleteMediaIfUnused(current.imageUrl);
+      await prisma.project.update({ where: { slug: input.slug }, data });
+      if ("imageUrl" in data && current.imageUrl !== data.imageUrl) {
+        await deleteMediaIfUnused(current.imageUrl);
+      }
     } else {
-      await prisma.project.create({ data });
+      await prisma.project.create({ data: data as Parameters<typeof prisma.project.create>[0]["data"] });
     }
   }
 

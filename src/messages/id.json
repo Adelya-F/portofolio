@@ -30,7 +30,9 @@
     "featuredBadge": "Unggulan",
     "demo": "Demo langsung",
     "repo": "Kode sumber",
-    "imagePlaceholder": "Belum ada pratinjau"
+    "imagePlaceholder": "Belum ada pratinjau",
+    "readMore": "Baca selengkapnya",
+    "close": "Tutup"
   },
   "experience": {
     "eyebrow": "Perjalanan saya",
@@ -60,7 +62,7 @@
     "nameLabel": "Nama",
     "namePlaceholder": "Nama Anda",
     "emailLabel": "Email",
-    "emailPlaceholder": "anda@contoh.com",
+    "emailPlaceholder": "Email Anda",
     "messageLabel": "Pesan",
     "messagePlaceholder": "Tulis pesan Anda...",
     "submit": "Kirim Pesan",

@@ -2,6 +2,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import type { AppLocale } from "@/i18n/routing";
 import { ProjectPreview } from "@/components/ProjectPreview";
+import { ProjectDetails } from "@/components/ProjectDetails";
 import { ScrollReveal, StaggerGroup, StaggerItem } from "@/components/motion/ScrollReveal";
 import { Carousel } from "@/components/Carousel";
 
@@ -49,7 +50,23 @@ export async function Projects() {
                     </span>
                   )}
                 </div>
-                <p className="mt-1.5 flex-1 text-sm text-muted line-clamp-3">{description}</p>
+                <ProjectDetails
+                  title={project.title}
+                  description={description}
+                  tags={project.tags}
+                  imageUrl={project.imageUrl}
+                  demoUrl={project.demoUrl}
+                  repoUrl={project.repoUrl}
+                  featured={project.featured}
+                  labels={{
+                    readMore: t("readMore"),
+                    close: t("close"),
+                    demo: t("demo"),
+                    repo: t("repo"),
+                    featured: t("featuredBadge"),
+                    imagePlaceholder: t("imagePlaceholder"),
+                  }}
+                />
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {project.tags.map((tag) => (
                     <span

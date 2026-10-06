@@ -27,14 +27,20 @@ export async function Experience() {
 
         <StaggerGroup className="mt-10 space-y-10 border-l border-border pl-6">
           {experience.map((exp) => {
-            const description = locale === "id" ? exp.descriptionId : exp.descriptionEn;
+            const isId = locale === "id";
+            const description = isId ? exp.descriptionId : exp.descriptionEn;
+            // The Indonesian title/organization/date are optional and fall
+            // back to the English text when not filled in.
+            const title = (isId && exp.titleId) || exp.title;
+            const organization = (isId && exp.organizationId) || exp.organization;
+            const date = (isId && exp.dateId) || exp.date;
 
             return (
               <StaggerItem key={exp.id} className="relative">
                 <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full bg-accent" />
-                <p className="text-sm font-medium text-accent">{exp.date}</p>
-                <h3 className="mt-1 font-display text-lg font-semibold">{exp.title}</h3>
-                <p className="text-sm text-muted">{exp.organization}</p>
+                <p className="text-sm font-medium text-accent">{date}</p>
+                <h3 className="mt-1 font-display text-lg font-semibold">{title}</h3>
+                <p className="text-sm text-muted">{organization}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
               </StaggerItem>
             );

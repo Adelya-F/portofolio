@@ -67,13 +67,18 @@ model Skill {
 }
 
 model Experience {
-  id            String   @id @default(cuid())
-  title         String
-  organization  String
-  descriptionEn String
-  descriptionId String
-  date          String
-  order         Int      @default(0)
+  id             String   @id @default(cuid())
+  // title / organization / date are the English text; the *Id columns hold
+  // the Indonesian version and fall back to English when left empty.
+  title          String
+  titleId        String?
+  organization   String
+  organizationId String?
+  descriptionEn  String
+  descriptionId  String
+  date           String
+  dateId         String?
+  order          Int      @default(0)
 
   @@map("experiences")
 }

@@ -30,7 +30,9 @@
     "featuredBadge": "Featured",
     "demo": "Live demo",
     "repo": "Source",
-    "imagePlaceholder": "No preview available"
+    "imagePlaceholder": "No preview available",
+    "readMore": "Read more",
+    "close": "Close"
   },
   "experience": {
     "eyebrow": "My journey",
@@ -60,7 +62,7 @@
     "nameLabel": "Name",
     "namePlaceholder": "Your name",
     "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
+    "emailPlaceholder": "Your email",
     "messageLabel": "Message",
     "messagePlaceholder": "Write your message...",
     "submit": "Send Message",
